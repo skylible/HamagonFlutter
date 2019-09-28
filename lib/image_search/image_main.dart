@@ -54,6 +54,8 @@ class _ImageMainState extends State<ImageMain> {
     );
 
     final List<Label> labels = await labeler.detectInImage(image);
+
+    
   }
 }
 
