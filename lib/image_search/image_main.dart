@@ -12,38 +12,55 @@ class ImageMain extends StatefulWidget {
 
 class _ImageMainState extends State<ImageMain> {
   File imageFile;
+  Image placeholder = Image.asset('assets/images/bug.jpg');
   List<Pest> _pest;
+  bool imageLoaded = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: _getImageAndDetectLabel,
+        onPressed: _getImage,
         tooltip: 'Pilih gambar',
         child: Icon(Icons.add_a_photo),
       ),
-      body: PreviewImage(imageFile: imageFile,),
+      body: imageLoaded
+          ? PreviewImage(
+              image: Image.file(imageFile, fit: BoxFit.cover),
+            )
+          : PreviewImage(
+              image: placeholder,
+            ),
     );
   }
 
-  void _getImageAndDetectLabel() async {
+  void _getImage() async {
     final imageFile = await ImagePicker.pickImage(
       source: ImageSource.gallery,
     );
+
     if (mounted) {
       setState(() {
-      this.imageFile = imageFile;
+        this.imageFile = imageFile;
+        this.imageLoaded = true;
       });
     }
-    // final image = FirebaseVisionImage.fromFile(imageFile);
-    // final imageLabelling = FirebaseVision.instance
-    //     .labelDetector(LabelDetectorOptions(confidenceThreshold: 0.3));
+  }
+
+  void _detectLabel() async {
+    final FirebaseVisionImage image = FirebaseVisionImage.fromFile(imageFile);
+    final LabelDetector labeler = FirebaseVision.instance.labelDetector(
+      LabelDetectorOptions(confidenceThreshold: 0.60),
+    );
+
+    final List<Label> labels = await labeler.detectInImage(image);
   }
 }
 
 class PreviewImage extends StatelessWidget {
-  PreviewImage({this.imageFile});
-  final File imageFile;
+  PreviewImage({this.image});
+
+  final Image image;
 
   @override
   Widget build(BuildContext context) {
@@ -53,21 +70,17 @@ class PreviewImage extends StatelessWidget {
           flex: 2,
           child: Container(
             constraints: BoxConstraints.expand(),
-            child: Image.file(
-              imageFile,
-              fit: BoxFit.cover
-            ),
+            child: image,
           ),
         ),
         Flexible(
-          flex: 1,
-          child: Center(
-            child: RaisedButton(
-              onPressed: () {},
-              child: Text("Cari"),
-            ),
-          )
-        )
+            flex: 1,
+            child: Center(
+              child: RaisedButton(
+                onPressed: () {},
+                child: Text("Cari"),
+              ),
+            ))
       ],
     );
   }
