@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "927996575023",
+    "firebase_url": "https://hamagon-26dfd.firebaseio.com",
+    "project_id": "hamagon-26dfd",
+    "storage_bucket": "hamagon-26dfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927996575023:android:82d8a68a26f0e6ffa8b5da",
+        "android_client_info": {
+          "package_name": "com.example.classifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927996575023-kr1onllv6epfnvs2uk237269fth51ipa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9jxYb7SmSYOz2zUqF4sOMKyOihSs5tGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927996575023-kr1onllv6epfnvs2uk237269fth51ipa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927996575023:android:a48808695a483c19a8b5da",
+        "android_client_info": {
+          "package_name": "com.example.hamagon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927996575023-jrs5phnsggekob4laehvoieakq3bor2a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hamagon",
+            "certificate_hash": "7da81d01d81a2f89c13c40ba155ae24b732b7c54"
+          }
+        },
+        {
+          "client_id": "927996575023-kr1onllv6epfnvs2uk237269fth51ipa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9jxYb7SmSYOz2zUqF4sOMKyOihSs5tGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927996575023-kr1onllv6epfnvs2uk237269fth51ipa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
