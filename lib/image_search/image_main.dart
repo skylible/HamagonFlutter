@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
+import 'package:hamagon/model/pest_repo.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ImageMain extends StatefulWidget {
   @override
@@ -6,44 +11,64 @@ class ImageMain extends StatefulWidget {
 }
 
 class _ImageMainState extends State<ImageMain> {
-  final _formKey = GlobalKey<FormState>();
+  File imageFile;
+  List<Pest> _pest;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: RaisedButton(
-                    onPressed: () {
-                      // Validate will return true if the form is valid, or false if
-                      // the form is invalid.
-                      if (_formKey.currentState.validate()) {
-                        // Process data.
-                      }
-                    },
-                    child: Text('Submit'),
-                  ),
-                ),
-              ),
-            ],
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: _getImageAndDetectLabel,
+        tooltip: 'Pilih gambar',
+        child: Icon(Icons.add_a_photo),
+      ),
+      body: PreviewImage(imageFile: imageFile,),
+    );
+  }
+
+  void _getImageAndDetectLabel() async {
+    final imageFile = await ImagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (mounted) {
+      setState(() {
+      this.imageFile = imageFile;
+      });
+    }
+    // final image = FirebaseVisionImage.fromFile(imageFile);
+    // final imageLabelling = FirebaseVision.instance
+    //     .labelDetector(LabelDetectorOptions(confidenceThreshold: 0.3));
+  }
+}
+
+class PreviewImage extends StatelessWidget {
+  PreviewImage({this.imageFile});
+  final File imageFile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Flexible(
+          flex: 2,
+          child: Container(
+            constraints: BoxConstraints.expand(),
+            child: Image.file(
+              imageFile,
+              fit: BoxFit.cover
+            ),
           ),
         ),
-      ),
+        Flexible(
+          flex: 1,
+          child: Center(
+            child: RaisedButton(
+              onPressed: () {},
+              child: Text("Cari"),
+            ),
+          )
+        )
+      ],
     );
   }
 }
