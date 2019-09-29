@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:hamagon/model/pest_repo.dart';
+import 'package:hamagon/result/result_list.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:developer';
 
 class ImageMain extends StatefulWidget {
   @override
@@ -25,11 +27,40 @@ class _ImageMainState extends State<ImageMain> {
         child: Icon(Icons.add_a_photo),
       ),
       body: imageLoaded
-          ? PreviewImage(
-              image: Image.file(imageFile, fit: BoxFit.cover),
+          ? Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    child: Image.file(imageFile, fit: BoxFit.cover),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Center(
+                    child: RaisedButton(
+                      onPressed: _detectLabel,
+                      child: Text("Cari"),
+                    ),
+                  ),
+                )
+              ],
             )
-          : PreviewImage(
-              image: placeholder,
+          : Column(
+              children: <Widget>[
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    constraints: BoxConstraints.expand(),
+                    child: placeholder,
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Container(),
+                )
+              ],
             ),
     );
   }
@@ -48,42 +79,86 @@ class _ImageMainState extends State<ImageMain> {
   }
 
   void _detectLabel() async {
+    log("detectlabel started");
     final FirebaseVisionImage image = FirebaseVisionImage.fromFile(imageFile);
-    final LabelDetector labeler = FirebaseVision.instance.labelDetector(
-      LabelDetectorOptions(confidenceThreshold: 0.60),
+    final ImageLabeler labeler = FirebaseVision.instance.imageLabeler(
+      ImageLabelerOptions(confidenceThreshold: 0.1),
     );
 
-    final List<Label> labels = await labeler.detectInImage(image);
-
+    final List<ImageLabel> labels = await labeler.processImage(image);
     
+    log("getresults");
+    List<Pest> pests = [];
+    for (ImageLabel label in labels) {
+      log("label printed");
+      pests.add(Pest(label.text, label.confidence));
+      final String text = label.text;
+      final double confidence = label.confidence;
+    }
+
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultList(results: pests),
+      ),
+    );
+    // _getResults(labels);  
   }
-}
 
-class PreviewImage extends StatelessWidget {
-  PreviewImage({this.image});
+  void _getResults(List<ImageLabel> labels) {
+    log("getresults");
+    List<Pest> pests;
+    for (ImageLabel label in labels) {
+      pests.add(Pest(label.text, label.confidence));
+      final String text = label.text;
+      final double confidence = label.confidence;
+    }
 
-  final Image image;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultList(results: pests),
+      ),
+    );
+    // _navigateToResult(pests);
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Flexible(
-          flex: 2,
-          child: Container(
-            constraints: BoxConstraints.expand(),
-            child: image,
-          ),
-        ),
-        Flexible(
-            flex: 1,
-            child: Center(
-              child: RaisedButton(
-                onPressed: () {},
-                child: Text("Cari"),
-              ),
-            ))
-      ],
+  void _navigateToResult(List<Pest> pests) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultList(results: pests),
+      ),
     );
   }
 }
+
+// class PreviewImage extends StatelessWidget {
+//   PreviewImage({this.image});
+
+//   final Image image;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Flexible(
+//           flex: 2,
+//           child: Container(
+//             constraints: BoxConstraints.expand(),
+//             child: image,
+//           ),
+//         ),
+//         Flexible(
+//             flex: 1,
+//             child: Center(
+//               child: RaisedButton(
+//                 onPressed: () {},
+//                 child: Text("Cari"),
+//               ),
+//             ))
+//       ],
+//     );
+//   }
+// }
