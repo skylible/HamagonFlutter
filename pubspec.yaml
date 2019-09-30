@@ -35,10 +35,15 @@ dependencies:
   image_picker: ^0.6.1+4
 
   # ml vision
-  firebase_ml_vision: ^0.9.2+2
-
+  # firebase_ml_vision: ^0.9.2+2
+  # firebase_livestream_ml_vision: ^1.0.1
   # tflite
-  tflite:
+  # tflite: ^1.0.4
+
+  automl_mlkit:
+    path: ../automl_mlkit/
+
+  path_provider: ^0.5.0+1
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +57,9 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/bug.jpg
+    - assets/dict.txt
+    - assets/model.tflite
+    - assets/manifest.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
