@@ -116,48 +116,41 @@ class _MainImageState extends State<MainImage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin App'),
-        ),
-        body: Builder(
-          builder: (BuildContext context) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _inferenceResult == null
-                      ? Container()
-                      : Text(
-                          "$_inferenceResult",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: _imageFile == null
-                        ? Container()
-                        : Container(
-                            height: 200,
-                            child: Image.file(_imageFile),
-                          ),
-                  ),
-                  FlatButton(
-                    color: Colors.blue[600],
-                    onPressed: loadImageAndInfer,
-                    textColor: Colors.white,
-                    child: Text("CHOOSE A PHOTO"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 28),
-                    child: Text('Model load status: $_modelLoadStatus\n'),
-                  ),
-                ],
+    return Builder(
+      builder: (BuildContext context) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _inferenceResult == null
+                  ? Container()
+                  : Text(
+                      "$_inferenceResult",
+                      style: TextStyle(fontSize: 20),
+                    ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _imageFile == null
+                    ? Container()
+                    : Container(
+                        height: 200,
+                        child: Image.file(_imageFile),
+                      ),
               ),
-            );
-          },
-        ),
-      ),
+              FlatButton(
+                color: Colors.green,
+                onPressed: loadImageAndInfer,
+                textColor: Colors.white,
+                child: Text("CHOOSE A PHOTO"),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 28),
+              //   child: Text('Model load status: $_modelLoadStatus\n'),
+              // ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
