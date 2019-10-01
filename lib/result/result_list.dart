@@ -30,6 +30,7 @@ class ResultList extends StatelessWidget {
               child: ListTile(
                 leading: Image.network(results[index].imageUrl),
                 title: Text(results[index].name),
+                trailing: Icon(Icons.arrow_forward_ios),
               ),
             ),
           );

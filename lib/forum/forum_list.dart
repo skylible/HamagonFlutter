@@ -31,6 +31,7 @@ class _ForumMainState extends State<ForumMain> {
                     child: ListTile(
                       title: Text(ds['title']),
                       subtitle: Text(ds['username']),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 );
