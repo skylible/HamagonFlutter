@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamagon/image_search/main.dart';
+import 'package:hamagon/profile/profile.dart';
 import 'package:hamagon/search/search_view.dart';
 
 // Views
@@ -30,24 +31,23 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         home: DefaultTabController(
-          length: 3,
+          length: 4,
           child: Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: Text("HAMAGON"),
-            ),
             bottomNavigationBar: Container(
               color: Colors.green,
               child: TabBar(
                 tabs: <Widget>[
                   Tab(
-                    icon: Icon(Icons.camera),
+                    icon: Icon(Icons.search),
                   ),
                   Tab(
                     icon: Icon(Icons.forum),
                   ),
                   Tab(
                     icon: Icon(Icons.note),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.person),
                   ),
                 ],
               ),
@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
                 SearchView(),
                 ForumMain(),
                 NewsMain(),
+                ProfileView(),
               ],
             ),
           ),

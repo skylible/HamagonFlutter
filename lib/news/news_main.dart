@@ -15,87 +15,93 @@ class _NewsMainState extends State<NewsMain> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: StreamBuilder(
-        stream: newsRepo.getNewsStream(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return new ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data.documents.length,
-              padding: const EdgeInsets.only(top: 5.0),
-              itemBuilder: (context, index) {
-                DocumentSnapshot ds = snapshot.data.documents[index];
-                return GestureDetector(
-                  onTap: () => _launchURL(ds['url']),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    elevation: 3,
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(12, 12, 16, 16),
-                      height: 132,
-                      child: Row(
-                        children: <Widget>[
-                          Flexible(
-                            flex: 1,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                              child: FadeInImage.assetNetwork(
-                                  fit: BoxFit.cover,
-                                  placeholder: 'assets/images/news-icon.png',
-                                  image: ds['image_url']),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Berita Hamagon"),
+      ),
+      body: Container(
+        child: StreamBuilder(
+          stream: newsRepo.getNewsStream(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return new ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data.documents.length,
+                padding: const EdgeInsets.only(top: 5.0),
+                itemBuilder: (context, index) {
+                  DocumentSnapshot ds = snapshot.data.documents[index];
+                  return GestureDetector(
+                    onTap: () => _launchURL(ds['url']),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      elevation: 3,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(12, 12, 16, 16),
+                        height: 132,
+                        child: Row(
+                          children: <Widget>[
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                child: FadeInImage.assetNetwork(
+                                    fit: BoxFit.cover,
+                                    placeholder: 'assets/images/news-icon.png',
+                                    image: ds['image_url']),
+                              ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 2,
-                            child: Column(
-                              children: <Widget>[
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      ds['source'],
-                                      style: TextStyle(color: Colors.grey[600]),
+                            Flexible(
+                              flex: 2,
+                              child: Column(
+                                children: <Widget>[
+                                  Flexible(
+                                    flex: 1,
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        ds['source'],
+                                        style:
+                                            TextStyle(color: Colors.grey[600]),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Flexible(
-                                  flex: 3,
-                                  child: Container(
-                                    child: Text(
-                                      ds['title'],
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
+                                  Flexible(
+                                    flex: 3,
+                                    child: Container(
+                                      child: Text(
+                                        ds['title'],
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Divider(),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.bottomRight,
-                                    child: Icon(Icons.share),
+                                  Divider(),
+                                  Flexible(
+                                    flex: 1,
+                                    child: Container(
+                                      alignment: Alignment.bottomRight,
+                                      child: Icon(Icons.share),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }

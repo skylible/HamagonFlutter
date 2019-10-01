@@ -14,7 +14,7 @@ class _ForumMainState extends State<ForumMain> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(appBar: AppBar(title: Text("Forum Hamagon"),), body: Container(
       child: StreamBuilder(
         stream: forumRepo.getThreadStream(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -44,6 +44,6 @@ class _ForumMainState extends State<ForumMain> {
           }
         },
       ),
-    );
+    ),);
   }
 }
