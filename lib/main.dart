@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hamagon/image_search/main.dart';
 import 'package:hamagon/profile/profile.dart';
 import 'package:hamagon/search/search_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // Views
-// import 'image_search/image_main.dart';
-import 'name_search/name_main.dart';
-import 'detail_search/detail_main.dart';
 import 'forum/forum_list.dart';
 import 'news/news_main.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

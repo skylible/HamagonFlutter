@@ -104,7 +104,7 @@ class _MainImageState extends State<MainImage> {
     final results =
         await AutomlMlkit.runModelOnImage(imagePath: imageFile.path);
     print("Got results" + results[0].toString());
-    print("Got results" + results[1].toString());
+    
     if (results.isEmpty) {
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
@@ -135,11 +135,13 @@ class _MainImageState extends State<MainImage> {
                 },
               ),
             );
-      }
 
-      // Navigate to list of pests code
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ResultList(results: pests)));
+        // Navigate to list of pests code
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ResultList(results: pests)));
+      }
     }
   }
 
