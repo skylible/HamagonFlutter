@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class NewsRepository {
@@ -6,8 +7,11 @@ class NewsRepository {
     News(),
   ];
 
-  List<News> getNewss() {
-    return news;
+  Stream<QuerySnapshot> snapshots;
+
+  Stream<QuerySnapshot> getNewsStream() {
+    snapshots = Firestore.instance.collection('news').snapshots();
+    return snapshots;
   }
 }
 

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'forum_repo.dart';
 import 'thread_item.dart';
@@ -13,23 +14,31 @@ class _ForumMainState extends State<ForumMain> {
 
   @override
   Widget build(BuildContext context) {
-    List<Thread> threads = forumRepo.getThreads();
-
     return Container(
-      child: ListView.builder(
-        itemCount: threads.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => (ForumThread(threads[index].id))),
+      child: StreamBuilder(
+        stream: forumRepo.getThreadStream(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return new ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.data.documents.length,
+              padding: const EdgeInsets.only(top: 5.0),
+              itemBuilder: (context, index) {
+                DocumentSnapshot ds = snapshot.data.documents[index];
+                return GestureDetector(
+                  child: ListTile(
+                    isThreeLine: true,
+                    title: Text(ds['title']),
+                    subtitle: Text(ds['username']),
                   ),
-                },
-            child: ThreadItem(
-              threads[index],
-            ),
-          );
+                );
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
     );

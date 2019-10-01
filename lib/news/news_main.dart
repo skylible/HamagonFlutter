@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'news_item.dart';
 import 'news_repo.dart';
@@ -13,23 +14,30 @@ class _NewsMainState extends State<NewsMain> {
 
   @override
   Widget build(BuildContext context) {
-    List<News> news = newsRepo.getNewss();
-
     return Container(
-      child: ListView.builder(
-        itemCount: news.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => (NewsDetail(news[index]))),
+      child: StreamBuilder(
+        stream: newsRepo.getNewsStream(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return new ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapshot.data.documents.length,
+              padding: const EdgeInsets.only(top: 5.0),
+              itemBuilder: (context, index) {
+                DocumentSnapshot ds = snapshot.data.documents[index];
+                return GestureDetector(
+                  child: ListTile(
+                    leading: FadeInImage.assetNetwork(placeholder: 'assets/images/new-icon.png',image: ds['image_url']),
+                    title: Text(ds['title']),
                   ),
-                },
-            child: NewsItem(
-              news[index],
-            ),
-          );
+                );
+              },
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       ),
     );

@@ -58,6 +58,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/bug.jpg
+    - assets/images/news-icon.png
     - assets/dict.txt
     - assets/model.tflite
     - assets/manifest.json

@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         home: DefaultTabController(
-          length: 5,
+          length: 3,
           child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -44,12 +44,6 @@ class MyApp extends StatelessWidget {
                     icon: Icon(Icons.camera),
                   ),
                   Tab(
-                    icon: Icon(Icons.search),
-                  ),
-                  Tab(
-                    icon: Icon(Icons.description),
-                  ),
-                  Tab(
                     icon: Icon(Icons.forum),
                   ),
                   Tab(
@@ -61,8 +55,6 @@ class MyApp extends StatelessWidget {
             body: TabBarView(
               children: <Widget>[
                 SearchView(),
-                NameMain(),
-                DetailMain(),
                 ForumMain(),
                 NewsMain(),
               ],

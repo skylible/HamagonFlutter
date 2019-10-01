@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ForumRepository {
@@ -6,13 +7,15 @@ class ForumRepository {
     Thread(),
   ];
 
+  Stream<QuerySnapshot> snapshots;
   List<Post> currentThread = [
     Post(),
     Post(),
   ];
 
-  List<Thread> getThreads() {
-    return threads;
+  Stream<QuerySnapshot> getThreadStream() {
+    snapshots = Firestore.instance.collection('forums').snapshots();
+    return snapshots;
   }
 
   List<Post> getCurrentThread() {
