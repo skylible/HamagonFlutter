@@ -26,9 +26,14 @@ class _NewsMainState extends State<NewsMain> {
               itemBuilder: (context, index) {
                 DocumentSnapshot ds = snapshot.data.documents[index];
                 return GestureDetector(
-                  child: ListTile(
-                    leading: FadeInImage.assetNetwork(placeholder: 'assets/images/new-icon.png',image: ds['image_url']),
-                    title: Text(ds['title']),
+                  child: Card(
+                    elevation: 3,
+                    child: ListTile(
+                      leading: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/new-icon.png',
+                          image: ds['image_url']),
+                      title: Text(ds['title']),
+                    ),
                   ),
                 );
               },

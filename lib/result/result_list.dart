@@ -18,12 +18,19 @@ class ResultList extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultDetail(pest: results[index],)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ResultDetail(
+                            pest: results[index],
+                          )));
             },
-            child: ListTile(
-              leading: Image.network(results[index].imageUrl),
-              title: Text(results[index].name),
+            child: Card(
+              elevation: 3,
+              child: ListTile(
+                leading: Image.network(results[index].imageUrl),
+                title: Text(results[index].name),
+              ),
             ),
           );
         },

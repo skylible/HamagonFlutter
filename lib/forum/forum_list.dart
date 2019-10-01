@@ -26,10 +26,12 @@ class _ForumMainState extends State<ForumMain> {
               itemBuilder: (context, index) {
                 DocumentSnapshot ds = snapshot.data.documents[index];
                 return GestureDetector(
-                  child: ListTile(
-                    isThreeLine: true,
-                    title: Text(ds['title']),
-                    subtitle: Text(ds['username']),
+                  child: Card(
+                    elevation: 3,
+                    child: ListTile(
+                      title: Text(ds['title']),
+                      subtitle: Text(ds['username']),
+                    ),
                   ),
                 );
               },
