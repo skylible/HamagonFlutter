@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hamagon/image_search/main.dart';
+import 'package:hamagon/search/search_view.dart';
 
 // Views
 // import 'image_search/image_main.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
             ),
             body: TabBarView(
               children: <Widget>[
-                MainImage(),
+                SearchView(),
                 NameMain(),
                 DetailMain(),
                 ForumMain(),

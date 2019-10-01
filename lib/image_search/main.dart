@@ -19,8 +19,11 @@ import 'package:automl_mlkit/automl_mlkit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:hamagon/model/pest_repo.dart';
+import 'package:hamagon/result/result_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(MainImage());
 
@@ -94,16 +97,17 @@ class _MainImageState extends State<MainImage> {
 
     if (imageFile == null) {
       Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text("Can't read image")));
+          .showSnackBar(SnackBar(content: Text("Gambar tidak bisa dibaca")));
       return;
     }
 
     final results =
         await AutomlMlkit.runModelOnImage(imagePath: imageFile.path);
     print("Got results" + results[0].toString());
+    print("Got results" + results[1].toString());
     if (results.isEmpty) {
       Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text("No labels found")));
+          .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
     } else {
       final label = results[0]["label"];
       final confidence = (results[0]["confidence"] * 100).toStringAsFixed(2);
@@ -111,6 +115,31 @@ class _MainImageState extends State<MainImage> {
         _imageFile = imageFile;
         _inferenceResult = "$label: $confidence \%";
       });
+
+      // Get pest data
+      List<Pest> pests = [];
+
+      for (var result in results) {
+        Firestore.instance
+            .collection('test_labels')
+            .where("name", isEqualTo: result["label"])
+            .snapshots()
+            .listen(
+              (data) => data.documents.forEach(
+                (doc) {
+                  print(doc["name"]);
+                  pests.add(
+                    Pest(
+                        doc["name"], doc["description"], doc["recommendation"]),
+                  );
+                },
+              ),
+            );
+      }
+
+      // Navigate to list of pests code
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ResultList(results: pests)));
     }
   }
 
@@ -145,7 +174,7 @@ class _MainImageState extends State<MainImage> {
               ),
               // Padding(
               //   padding: const EdgeInsets.symmetric(vertical: 28),
-              //   child: Text('Model load status: $_modelLoadStatus\n'),
+              //   child: Text('Status A.I: $_modelLoadStatus\n'),
               // ),
             ],
           ),
