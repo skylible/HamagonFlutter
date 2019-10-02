@@ -104,7 +104,7 @@ class _MainImageState extends State<MainImage> {
     final results =
         await AutomlMlkit.runModelOnImage(imagePath: imageFile.path);
     print("Got results" + results[0].toString());
-    
+
     if (results.isEmpty) {
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
@@ -129,8 +129,8 @@ class _MainImageState extends State<MainImage> {
                 (doc) {
                   print(doc["name"]);
                   pests.add(
-                    Pest(
-                        doc["name"], doc["description"], doc["recommendation"]),
+                    Pest(doc['image_url'], doc["name"], doc["description"],
+                        doc["recommendation"], doc["host_tree"]),
                   );
                 },
               ),

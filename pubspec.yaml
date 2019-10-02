@@ -49,6 +49,9 @@ dependencies:
 
   url_launcher: ^5.1.4
 
+  # Text search
+  algolia: ^0.1.6+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

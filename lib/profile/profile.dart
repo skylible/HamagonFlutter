@@ -91,7 +91,7 @@ class ProfileView extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {},
                       elevation: 3,
-                      color: Colors.green,
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
@@ -118,7 +118,7 @@ class ProfileView extends StatelessWidget {
                     child: RaisedButton(
                       onPressed: () {},
                       elevation: 3,
-                      color: Colors.green,
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
