@@ -28,8 +28,8 @@ class PestRepo {
     List<Pest> results = [];
 
     for (var pest in pests) {
-      if (pest.hostTree.toLowerCase().contains(hostTree) &&
-          pest.description.toLowerCase().contains(keyword)) {
+      if (pest.hostTree.toLowerCase().contains(hostTree.toLowerCase()) &&
+          pest.description.toLowerCase().contains(keyword.toLowerCase())) {
         results.add(pest);
       }
     }
