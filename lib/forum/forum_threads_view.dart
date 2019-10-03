@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hamagon/forum/forum_repo.dart';
+import 'package:hamagon/forum/thread_item.dart';
 
 class ForumThreadsView extends StatefulWidget {
   final String topic;
@@ -18,7 +19,11 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Title"),
+        title: Text("Topik: " + widget.topic),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
       body: Container(
         child: StreamBuilder(
@@ -36,8 +41,7 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
                       onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  ForumThreadsView(ds["name"]))),
+                              builder: (context) => ThreadItem(ds))),
                       child: Card(
                         elevation: 3,
                         child: ListTile(
