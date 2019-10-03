@@ -18,6 +18,16 @@ class ForumRepository {
     return snapshots;
   }
 
+  Stream<QuerySnapshot> getThreadListStream(String topic) {
+    snapshots = Firestore.instance.collection('forums').where('topic', isEqualTo: topic).snapshots();
+    return snapshots;
+  }
+
+  Stream<QuerySnapshot> getTopicStream() {
+    snapshots = Firestore.instance.collection('forum_topics').snapshots();
+    return snapshots;
+  }
+
   List<Post> getCurrentThread() {
     return currentThread;
   }

@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hamagon/forum/forum_threads_view.dart';
-import 'forum_repo.dart';
-import 'thread_item.dart';
+import 'package:hamagon/forum/forum_repo.dart';
 
+class ForumThreadsView extends StatefulWidget {
+  final String topic;
 
-class ForumMain extends StatefulWidget {
+  ForumThreadsView(this.topic);
+
   @override
-  _ForumMainState createState() => _ForumMainState();
+  _ForumThreadsViewState createState() => _ForumThreadsViewState();
 }
 
-class _ForumMainState extends State<ForumMain> {
-  ForumRepository forumRepo = ForumRepository();
+class _ForumThreadsViewState extends State<ForumThreadsView> {
+  ForumRepository forumRepo = new ForumRepository();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Forum Hamagon"),
+        title: Text("Title"),
       ),
       body: Container(
         child: StreamBuilder(
-          stream: forumRepo.getTopicStream(),
+          stream: forumRepo.getThreadListStream(widget.topic),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               return new ListView.builder(
@@ -32,7 +33,11 @@ class _ForumMainState extends State<ForumMain> {
                   DocumentSnapshot ds = snapshot.data.documents[index];
                   if (snapshot.hasData) {
                     return GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ForumThreadsView(ds["name"]))),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ForumThreadsView(ds["name"]))),
                       child: Card(
                         elevation: 3,
                         child: ListTile(
@@ -43,7 +48,9 @@ class _ForumMainState extends State<ForumMain> {
                       ),
                     );
                   } else {
-                    return Center(child: Text("Tidak ada topik yang tersedia"),);
+                    return Center(
+                      child: Text("Tidak ada topik yang tersedia"),
+                    );
                   }
                 },
               );
