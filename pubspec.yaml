@@ -52,6 +52,10 @@ dependencies:
   # Text search
   algolia: ^0.1.6+1
 
+  # For sign in
+  rxdart: ^0.22.2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +69,7 @@ flutter:
   assets:
     - assets/images/bug.jpg
     - assets/images/news-icon.png
+    - assets/images/hamagon-logo.png
     - assets/images/google_logo.png
     - assets/images/farmland.jpg
     - assets/dict.txt

@@ -3,6 +3,7 @@ import 'package:hamagon/detail_search/detail_main.dart';
 import 'package:hamagon/image_search/main.dart';
 
 class SearchView extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return Stack(

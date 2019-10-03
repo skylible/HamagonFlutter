@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hamagon/model/auth_service.dart';
 
 class ProfileView extends StatelessWidget {
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -116,7 +119,9 @@ class ProfileView extends StatelessWidget {
                     height: double.infinity,
                     width: double.infinity,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        authService.signOutGoogle();
+                      },
                       elevation: 3,
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
