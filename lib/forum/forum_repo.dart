@@ -22,6 +22,7 @@ class ForumRepository {
     FirebaseUser currentUser = await authService.getCurrentUser();
     return await Firestore.instance.collection('forums').add({
       'username': currentUser.displayName,
+      'avatar_url': currentUser.photoUrl,
       'created_at': Timestamp.now(),
       'content': content,
       'topic': topic,
@@ -39,6 +40,7 @@ class ForumRepository {
         .collection('comments')
         .add({
       'username': currentUser.displayName,
+      'avatar_url': currentUser.photoUrl,
       'created_at': Timestamp.now(),
       'content': content,
       'thread_id': threadId
@@ -56,7 +58,7 @@ class ForumRepository {
   }
 
   Stream<QuerySnapshot> getThreadStream() {
-    snapshots = Firestore.instance.collection('forums').snapshots();
+    snapshots = Firestore.instance.collection('forums').orderBy('created_at', descending:true).snapshots();
     return snapshots;
   }
 

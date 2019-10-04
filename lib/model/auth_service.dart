@@ -56,16 +56,16 @@ class AuthService {
         .limit(1)
         .getDocuments();
 
-DocumentReference userDocRef;
-    if (userDocument.documents.length < 1) {
-       userDocRef = await Firestore().collection('users').add({
-        'name' : user.displayName,
-        'description' : '',
-        'uid' : user.uid,
-      });
-    }
+// DocumentReference userDocRef;
+//     if (userDocument.documents.length < 1) {
+//        userDocRef = await Firestore().collection('users').add({
+//         'name' : user.displayName,
+//         'description' : '',
+//         'uid' : user.uid,
+//       });
+//     }
 
-    assert(currentUser.uid == (await userDocRef.get())['uid']);
+//     assert(currentUser.uid == (await userDocRef.get())['uid']);
 
     return 'signInWithGoogle succeeded: $user';
   }
@@ -81,6 +81,7 @@ DocumentReference userDocRef;
       'uid': user.uid,
       'email': user.email,
       'photoURL': user.photoUrl,
+      'description': "",
       'displayName': user.displayName,
       'lastSeen': DateTime.now()
     }, merge: true);
