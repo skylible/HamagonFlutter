@@ -23,7 +23,11 @@ class _CreateThreadViewState extends State<CreateThreadView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Buat pertanyaan baru"),
+        title: Text("Buat pertanyaan"),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
       ),
       body: FutureBuilder(
           future: _getUser(),
@@ -90,6 +94,15 @@ class _CreateThreadViewState extends State<CreateThreadView> {
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             controller: contentController,
+                            decoration: new InputDecoration(
+                              hintText: "Tulis pertanyaan di sini",
+                              fillColor: Colors.white,
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(25.0),
+                                borderSide: new BorderSide(),
+                              ),
+                              //fillColor: Colors.green
+                            ),
                             // The validator receives the text that the user has entered.
                             validator: (value) {
                               if (value.isEmpty) {
@@ -106,8 +119,8 @@ class _CreateThreadViewState extends State<CreateThreadView> {
                           width: double.infinity,
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
+                                borderRadius: new BorderRadius.circular(30.0)),
+                            color: Color(0xff628336),
                             onPressed: () {
                               // Validate returns true if the form is valid, otherwise false.
                               if (_formKey.currentState.validate()) {

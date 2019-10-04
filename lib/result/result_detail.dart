@@ -100,8 +100,9 @@ class ResultDetail extends StatelessWidget {
               ),
               Text(
                 pest.description,
-                maxLines: 7,
+                maxLines: 10000,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
               ),
             ],
           ),
@@ -122,7 +123,7 @@ class ResultDetail extends StatelessWidget {
               ),
               Text(
                 pest.hostTree,
-                maxLines: 7,
+                maxLines: 10000,
                 overflow: TextOverflow.ellipsis,
               ),
             ],
@@ -144,8 +145,9 @@ class ResultDetail extends StatelessWidget {
               ),
               Text(
                 pest.recommendation,
-                maxLines: 7,
+                maxLines: 10000,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
               ),
             ],
           ),

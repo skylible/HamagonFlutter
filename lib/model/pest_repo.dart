@@ -50,7 +50,8 @@ class Pest {
   final String description;
   final String recommendation;
   final String hostTree;
+  double confidence = 0;
 
   Pest(this.imageUrl, this.name, this.description, this.recommendation,
-      this.hostTree);
+      this.hostTree, {this.confidence});
 }

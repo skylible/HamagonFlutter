@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.green,
+        color: Color(0xff628336),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _signInButton() {
-    return OutlineButton(
+    return RaisedButton(
       splashColor: Colors.grey,
       onPressed: () {
         authService.signInWithGoogle().whenComplete(() {
@@ -115,7 +115,7 @@ class LoginPage extends StatelessWidget {
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.white),
+      // borderSide: BorderSide(color: Colors.white),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Row(
@@ -131,7 +131,7 @@ class LoginPage extends StatelessWidget {
                 'Masuk dengan Google',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.black54,
+                  color: Colors.blueGrey,
                 ),
               ),
             )

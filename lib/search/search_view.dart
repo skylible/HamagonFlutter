@@ -32,7 +32,7 @@ class SearchView extends StatelessWidget {
         Column(
           children: <Widget>[
             Flexible(
-              flex: 10,
+              flex: 18,
               child: Container(),
             ),
             Flexible(
@@ -55,7 +55,7 @@ class SearchView extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Flexible(
-                flex: 8,
+                flex: 2,
                 child: Container(
                   padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                   child: Column(
@@ -96,7 +96,7 @@ class SearchView extends StatelessWidget {
                 ),
               ),
               Flexible(
-                  flex: 8,
+                  flex: 1,
                   child: Container(
                     padding: EdgeInsets.fromLTRB(0, 12, 0, 4),
                     child: GridView.count(

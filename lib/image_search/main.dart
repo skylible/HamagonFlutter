@@ -130,7 +130,7 @@ class _MainImageState extends State<MainImage> {
                   print(doc["name"]);
                   pests.add(
                     Pest(doc['image_url'], doc["name"], doc["description"],
-                        doc["recommendation"], doc["host_tree"]),
+                        doc["recommendation"], doc["host_tree"], confidence: result['confidence']),
                   );
                 },
               ),
