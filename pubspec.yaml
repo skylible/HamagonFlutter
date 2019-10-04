@@ -55,6 +55,9 @@ dependencies:
   # For sign in
   rxdart: ^0.22.2
 
+  # Datetime format
+  intl: ^0.16.0
+
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
   assets:
     - assets/images/bug.jpg
     - assets/images/news-icon.png
+    - assets/images/avatar-placeholder.png
     - assets/images/hamagon-logo.png
     - assets/images/google_logo.png
     - assets/images/farmland.jpg

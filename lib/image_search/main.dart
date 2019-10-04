@@ -103,7 +103,7 @@ class _MainImageState extends State<MainImage> {
 
     final results =
         await AutomlMlkit.runModelOnImage(imagePath: imageFile.path);
-    print("Got results" + results[0].toString());
+    // print("Got results" + results[0].toString());
 
     if (results.isEmpty) {
       Scaffold.of(context)

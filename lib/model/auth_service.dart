@@ -50,6 +50,23 @@ class AuthService {
     final FirebaseUser currentUser = await _auth.currentUser();
     assert(user.uid == currentUser.uid);
 
+    QuerySnapshot userDocument = await Firestore.instance
+        .collection('users')
+        .where('uid', isEqualTo: currentUser.uid)
+        .limit(1)
+        .getDocuments();
+
+DocumentReference userDocRef;
+    if (userDocument.documents.length < 1) {
+       userDocRef = await Firestore().collection('users').add({
+        'name' : user.displayName,
+        'description' : '',
+        'uid' : user.uid,
+      });
+    }
+
+    assert(currentUser.uid == (await userDocRef.get())['uid']);
+
     return 'signInWithGoogle succeeded: $user';
   }
 
@@ -72,7 +89,7 @@ class AuthService {
   void signOutGoogle() async {
     await _googleSignIn.signOut();
     await FirebaseAuth.instance.signOut();
-    
+
     print("User Sign Out");
   }
 }

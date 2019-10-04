@@ -4,7 +4,6 @@ import 'package:hamagon/forum/forum_threads_view.dart';
 import 'forum_repo.dart';
 import 'thread_item.dart';
 
-
 class ForumMain extends StatefulWidget {
   @override
   _ForumMainState createState() => _ForumMainState();
@@ -17,6 +16,7 @@ class _ForumMainState extends State<ForumMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Forum Hamagon"),
       ),
       body: Container(
@@ -32,7 +32,11 @@ class _ForumMainState extends State<ForumMain> {
                   DocumentSnapshot ds = snapshot.data.documents[index];
                   if (snapshot.hasData) {
                     return GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ForumThreadsView(ds["name"]))),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ForumThreadsView(topic: ds["name"]))),
                       child: Card(
                         elevation: 3,
                         child: ListTile(
@@ -43,7 +47,9 @@ class _ForumMainState extends State<ForumMain> {
                       ),
                     );
                   } else {
-                    return Center(child: Text("Tidak ada topik yang tersedia"),);
+                    return Center(
+                      child: Text("Tidak ada topik yang tersedia"),
+                    );
                   }
                 },
               );
