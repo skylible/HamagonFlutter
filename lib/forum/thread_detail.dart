@@ -22,6 +22,13 @@ class _ThreadDetailPageState extends State<ThreadDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Komentar'),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30)
+          )
+        )
       ),
       body: Builder(
         builder: (context) => Stack(
@@ -219,7 +226,7 @@ class _ThreadDetailPageState extends State<ThreadDetailPage> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(6, 6, 6, 6),
-                  color: Colors.green,
+                  color: Color(0xff628336),
                   child: Row(
                     children: <Widget>[
                       Flexible(

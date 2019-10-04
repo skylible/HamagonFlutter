@@ -58,6 +58,11 @@ dependencies:
   # Datetime format
   intl: ^0.16.0
 
+  # Beautify library
+  curved_navigation_bar: ^0.3.1
+  sliding_up_panel: ^0.3.6
+  carousel_slider: ^1.3.0
+
 
 dev_dependencies:
   flutter_test:

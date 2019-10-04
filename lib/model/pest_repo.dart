@@ -19,8 +19,15 @@ class PestRepo {
   static String collectionName = "test_labels";
   List<Pest> pests = [];
 
-  List<Pest> searchName() {
-    return pests;
+  List<Pest> searchName({String name}) {
+    List<Pest> results = [];
+
+    for (var pest in pests) {
+      if (pest.name.toLowerCase().contains(name.toLowerCase())) {
+        results.add(pest);
+      }
+    }
+    return results;
   }
 
   // NOT IDEAL IF DATA IS THOUSANDS, TEMPORARY SOLUTION

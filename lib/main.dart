@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hamagon/model/auth_service.dart';
@@ -17,6 +18,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int _page = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
+  final _pageOption = [
+    SearchView(),
+    ForumMain(),
+    NewsMain(),
+    ProfileView(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,36 +43,27 @@ class _MyAppState extends State<MyApp> {
 
             /// is because there is user already logged
             return DefaultTabController(
+              key: _bottomNavigationKey,
               length: 4,
               child: Scaffold(
-                bottomNavigationBar: Container(
-                  color: Colors.green,
-                  child: TabBar(
-                    tabs: <Widget>[
-                      Tab(
-                        icon: Icon(Icons.search),
-                      ),
-                      Tab(
-                        icon: Icon(Icons.forum),
-                      ),
-                      Tab(
-                        icon: Icon(Icons.note),
-                      ),
-                      Tab(
-                        icon: Icon(Icons.person),
-                      ),
+                  bottomNavigationBar: CurvedNavigationBar(
+                    index: 0,
+                    height: 50.0,
+                    color: Color(0xff628336),
+                    backgroundColor: Colors.transparent,
+                    items: <Widget>[
+                      Icon(Icons.search, size: 30, color: Colors.white),
+                      Icon(Icons.forum, size: 30, color: Colors.white),
+                      Icon(Icons.note, size: 30, color: Colors.white),
+                      Icon(Icons.person, size: 30, color: Colors.white),
                     ],
+                    onTap: (index) {
+                      setState(() {
+                        _page = index;
+                      });
+                    },
                   ),
-                ),
-                body: TabBarView(
-                  children: <Widget>[
-                    SearchView(),
-                    ForumMain(),
-                    NewsMain(),
-                    ProfileView(),
-                  ],
-                ),
-              ),
+                  body: _pageOption[_page]),
             );
           }
 
@@ -114,7 +115,7 @@ class LoginPage extends StatelessWidget {
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
+      borderSide: BorderSide(color: Colors.white),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Row(
@@ -127,10 +128,10 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Sign in with Google',
+                'Masuk dengan Google',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.grey,
+                  color: Colors.black54,
                 ),
               ),
             )

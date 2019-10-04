@@ -18,6 +18,13 @@ class _NewsMainState extends State<NewsMain> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Berita Hamagon"),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30)
+          )
+        )
       ),
       body: Container(
         child: StreamBuilder(
@@ -82,7 +89,7 @@ class _NewsMainState extends State<NewsMain> {
                                     flex: 1,
                                     child: Container(
                                       alignment: Alignment.bottomRight,
-                                      child: Icon(Icons.share),
+                                      child: Icon(Icons.share, color: Color(0xff628336),),
                                     ),
                                   ),
                                 ],

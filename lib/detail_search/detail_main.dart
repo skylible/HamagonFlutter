@@ -19,6 +19,13 @@ class _DetailMainState extends State<DetailMain> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Pencarian Ciri-Ciri"),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30)
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(8),
@@ -61,7 +68,7 @@ class _DetailMainState extends State<DetailMain> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0),
                 child: RaisedButton(
-                  color: Colors.green,
+                  color: Color(0xff628336),
                   onPressed: () {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
@@ -72,9 +79,12 @@ class _DetailMainState extends State<DetailMain> {
                       _search();
                     }
                   },
+                  shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+              
                   child: Text(
                     'Cari',
                     style: TextStyle(color: Colors.white),
+                    
                   ),
                 ),
               ),

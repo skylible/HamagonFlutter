@@ -12,6 +12,14 @@ class ResultList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Hasil Pencarian Hama"),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+            
+          )
+        )
       ),
       body: ListView.builder(
         itemCount: results.length,

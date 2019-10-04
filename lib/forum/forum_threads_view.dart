@@ -23,8 +23,16 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Topik: " + widget.topic),
+        backgroundColor: Color(0xff628336),
+        centerTitle: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30)
+          )
+        )
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff628336),
         onPressed: () {
           Navigator.push(
               context,

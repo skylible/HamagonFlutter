@@ -136,12 +136,12 @@ class _MainImageState extends State<MainImage> {
               ),
             );
 
+      }
         // Navigate to list of pests code
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => ResultList(results: pests)));
-      }
     }
   }
 
@@ -149,8 +149,12 @@ class _MainImageState extends State<MainImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pencarian Gambar"),
-      ),
+          title: Text("Pencarian Gambar"),
+          backgroundColor: Color(0xff628336),
+          centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(30)))),
       body: Builder(
         builder: (BuildContext context) {
           return Center(
@@ -172,11 +176,27 @@ class _MainImageState extends State<MainImage> {
                           child: Image.file(_imageFile),
                         ),
                 ),
-                FlatButton(
-                  color: Colors.green,
-                  onPressed: loadImageAndInfer,
-                  textColor: Colors.white,
-                  child: Text("CHOOSE A PHOTO"),
+                //       Container(
+                //         margin: const EdgeInsets.only(bottom: 0),
+                //         height: 300,
+                //         width: 300,
+                //         child: Icon(
+                //         Icons.file_upload,
+                //         color: Color(0xff628336),
+                //         size: 300.0,
+                //       ),
+                // ),
+
+                Container(
+                  width: 300,
+                  height: 40,
+                  child: FlatButton(
+                      color: Color(0xff628336),
+                      onPressed: loadImageAndInfer,
+                      textColor: Colors.white,
+                      child: Text("Pilih Foto"),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0))),
                 ),
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(vertical: 28),

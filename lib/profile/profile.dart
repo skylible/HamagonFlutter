@@ -24,7 +24,7 @@ class ProfileView extends StatelessWidget {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Color(0xff628336),
                 ),
               ),
               Column(
@@ -97,33 +97,33 @@ class ProfileView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Flexible(
-                        flex: 3,
-                        child: Container(
-                          margin: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                          height: double.infinity,
-                          width: double.infinity,
-                          child: RaisedButton(
-                            onPressed: () {},
-                            elevation: 3,
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Container(
-                                  child: Icon(Icons.edit),
-                                ),
-                                Container(
-                                  child: Text("Edit Profil"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Flexible(
+                      //   flex: 3,
+                      //   child: Container(
+                      //     margin: EdgeInsets.fromLTRB(0, 12, 0, 8),
+                      //     height: double.infinity,
+                      //     width: double.infinity,
+                      //     child: RaisedButton(
+                      //       onPressed: () {},
+                      //       elevation: 3,
+                      //       color: Colors.white,
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(16),
+                      //       ),
+                      //       child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         children: <Widget>[
+                      //           Container(
+                      //             child: Icon(Icons.edit),
+                      //           ),
+                      //           Container(
+                      //             child: Text("Edit Profil"),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Flexible(
                         flex: 3,
                         child: Container(
@@ -154,7 +154,7 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                       Flexible(
-                        flex: 1,
+                        flex: 4,
                         child: Container(),
                       ),
                     ],
