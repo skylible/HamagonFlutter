@@ -87,11 +87,16 @@ class AuthService {
     }, merge: true);
   }
 
-  void signOutGoogle() async {
+  void signOutGoogle({Function routine}) async {
     await _googleSignIn.signOut();
     await FirebaseAuth.instance.signOut();
 
     print("User Sign Out");
+
+    if(routine != null) {
+      // Runs refresh app routine
+      routine();
+    }
   }
 }
 

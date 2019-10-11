@@ -63,11 +63,20 @@ dependencies:
   sliding_up_panel: ^0.3.6
   carousel_slider: ^1.3.0
 
+  
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # Application Icon
+  flutter_launcher_icons: "^0.7.3"
+
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "assets/images/hama-01.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,6 +90,9 @@ flutter:
     - assets/images/hamagon-logo.png
     - assets/images/google_logo.png
     - assets/images/farmland.jpg
+    - assets/images/hama-01.png
+    - assets/images/search-01.png
+    - assets/images/search-02.png
     - assets/dict.txt
     - assets/model.tflite
     - assets/manifest.json

@@ -20,16 +20,32 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
-  final _pageOption = [
-    SearchView(),
-    ForumMain(),
-    NewsMain(),
-    ProfileView(),
-  ];
+  var _pageOption;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _pageOption = [
+      SearchView(),
+      ForumMain(),
+      NewsMain(),
+      ProfileView(this.callback),
+    ];
+  }
+
+  // To call setState on child
+  void callback() {
+    print("Callback in parent called");
+    this.setState(() {
+      _page = 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
       title: 'Hamagon',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -86,6 +102,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(24),
         color: Color(0xff628336),
         child: Center(
           child: Column(
@@ -93,9 +110,9 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                'assets/images/hamagon-logo.png',
+                'assets/images/hama-01.png',
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 12),
               _signInButton(),
             ],
           ),
@@ -124,14 +141,14 @@ class LoginPage extends StatelessWidget {
           children: <Widget>[
             Image(
                 image: AssetImage("assets/images/google_logo.png"),
-                height: 35.0),
+                height: 24.0),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 'Masuk dengan Google',
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.blueGrey,
+                  fontSize: 16,
+                  color: Color(0xff628336),
                 ),
               ),
             )

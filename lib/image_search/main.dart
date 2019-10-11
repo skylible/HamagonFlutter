@@ -91,7 +91,7 @@ class _MainImageState extends State<MainImage> {
         buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
   }
 
-  Future<void> loadImageAndInfer() async {
+  Future<void> loadImageAndInfer(context) async {
     final File imageFile =
         await ImagePicker.pickImage(source: ImageSource.gallery);
 
@@ -106,8 +106,13 @@ class _MainImageState extends State<MainImage> {
     // print("Got results" + results[0].toString());
 
     if (results.isEmpty) {
+          print("Context dari page ini adalah:" + context.toString());
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
+          setState(() {
+           _imageFile = imageFile; 
+          });
+
     } else {
       final label = results[0]["label"];
       final confidence = (results[0]["confidence"] * 100).toStringAsFixed(2);
@@ -130,18 +135,19 @@ class _MainImageState extends State<MainImage> {
                   print(doc["name"]);
                   pests.add(
                     Pest(doc['image_url'], doc["name"], doc["description"],
-                        doc["recommendation"], doc["host_tree"], confidence: result['confidence']),
+                        doc["recommendation"], doc["host_tree"],
+                        confidence: result['confidence']),
                   );
+
+                  // Navigate to list of pests code
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResultList(results: pests)));
                 },
               ),
             );
-
       }
-        // Navigate to list of pests code
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ResultList(results: pests)));
     }
   }
 
@@ -192,7 +198,7 @@ class _MainImageState extends State<MainImage> {
                   height: 40,
                   child: FlatButton(
                       color: Color(0xff628336),
-                      onPressed: loadImageAndInfer,
+                      onPressed: () => {loadImageAndInfer(context)},
                       textColor: Colors.white,
                       child: Text("Pilih Foto"),
                       shape: RoundedRectangleBorder(

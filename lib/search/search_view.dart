@@ -120,11 +120,7 @@ class SearchView extends StatelessWidget {
                             elevation: 3,
                             child: Container(
                               padding: const EdgeInsets.all(8),
-                              child: const Icon(
-                                Icons.camera_alt,
-                                color: Color(0xff628336),
-                                size: 80,
-                              ),
+                              child: Image.asset('assets/images/search-01.png'),
                             ),
                           ),
                         ),
@@ -142,11 +138,7 @@ class SearchView extends StatelessWidget {
                             elevation: 3,
                             child: Container(
                               padding: const EdgeInsets.all(8),
-                              child: const Icon(
-                                Icons.list,
-                                color: Color(0xff628336),
-                                size: 90,
-                              ),
+                              child: Image.asset('assets/images/search-02.png'),
                             ),
                           ),
                         ),

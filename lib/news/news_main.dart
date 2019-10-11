@@ -52,10 +52,11 @@ class _NewsMainState extends State<NewsMain> {
                               flex: 1,
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                child: FadeInImage.assetNetwork(
-                                    fit: BoxFit.cover,
-                                    placeholder: 'assets/images/news-icon.png',
-                                    image: ds['image_url']),
+                                child: Image.network(ds['image_url']),
+                                // child: FadeInImage.assetNetwork(
+                                //     fit: BoxFit.cover,
+                                //     placeholder: 'assets/images/news-icon.png',
+                                //     image: ds['image_url']),
                               ),
                             ),
                             Flexible(

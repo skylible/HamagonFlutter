@@ -5,8 +5,11 @@ import 'package:hamagon/model/auth_service.dart';
 import 'package:hamagon/model/user_repo.dart';
 
 class ProfileView extends StatelessWidget {
-  AuthService authService = AuthService();
-  User currentUser = User();
+  final AuthService authService = AuthService();
+  final User currentUser = User();
+  Function callback;
+
+  ProfileView(this.callback);
 
   @override
   Widget build(BuildContext context) {
@@ -97,33 +100,6 @@ class ProfileView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Flexible(
-                      //   flex: 3,
-                      //   child: Container(
-                      //     margin: EdgeInsets.fromLTRB(0, 12, 0, 8),
-                      //     height: double.infinity,
-                      //     width: double.infinity,
-                      //     child: RaisedButton(
-                      //       onPressed: () {},
-                      //       elevation: 3,
-                      //       color: Colors.white,
-                      //       shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(16),
-                      //       ),
-                      //       child: Row(
-                      //         mainAxisAlignment: MainAxisAlignment.center,
-                      //         children: <Widget>[
-                      //           Container(
-                      //             child: Icon(Icons.edit),
-                      //           ),
-                      //           Container(
-                      //             child: Text("Edit Profil"),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       Flexible(
                         flex: 3,
                         child: Container(
@@ -132,7 +108,7 @@ class ProfileView extends StatelessWidget {
                           width: double.infinity,
                           child: RaisedButton(
                             onPressed: () {
-                              authService.signOutGoogle();
+                              authService.signOutGoogle(routine: this.callback);
                             },
                             elevation: 3,
                             color: Colors.white,
