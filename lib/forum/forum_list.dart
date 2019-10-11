@@ -16,21 +16,23 @@ class _ForumMainState extends State<ForumMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Forum Hamagon"),
-        backgroundColor: Color(0xff628336),
-        centerTitle: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          )
-        )
-      ),
+          title: Text("Forum Hamagon"),
+          backgroundColor: Color(0xff628336),
+          centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(30)))),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[Container(
-          padding: EdgeInsets.fromLTRB(10,12,8,4),
-          child: Text("Pilih topik:", style: TextStyle(fontSize: 16), textAlign: TextAlign.left,),
-        ),
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 12, 8, 4),
+            child: Text(
+              "Pilih topik:",
+              style: TextStyle(fontSize: 16),
+              textAlign: TextAlign.left,
+            ),
+          ),
           Container(
             child: StreamBuilder(
               stream: forumRepo.getTopicStream(),
@@ -51,6 +53,8 @@ class _ForumMainState extends State<ForumMain> {
                                       ForumThreadsView(topic: ds["name"]))),
                           child: Card(
                             elevation: 3,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
                             child: ListTile(
                               title: Text(ds['name']),
                               // subtitle: Text(ds['username']),

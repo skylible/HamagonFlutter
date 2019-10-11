@@ -31,7 +31,7 @@ class _NameMainState extends State<NameMain> {
                     TextFormField(
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Silahkan ketikan nama hama...';
                         }
                         return null;
                       },

@@ -93,6 +93,7 @@ flutter:
     - assets/images/hama-01.png
     - assets/images/search-01.png
     - assets/images/search-02.png
+    - assets/images/profile-background.jpg
     - assets/dict.txt
     - assets/model.tflite
     - assets/manifest.json

@@ -48,7 +48,8 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       title: 'Hamagon',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primaryColor: Color(0xff628336),
+        buttonColor: Color(0xff628336),
       ),
       home: FutureBuilder<FirebaseUser>(
         future: authService.getCurrentUser(),
@@ -101,30 +102,37 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(24),
-        color: Color(0xff628336),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/images/hama-01.png',
-              ),
-              SizedBox(height: 12),
-              _signInButton(),
-            ],
+      body: Builder(
+        builder: (BuildContext context) => Container(
+          padding: EdgeInsets.all(24),
+          color: Color(0xff628336),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/hama-01.png',
+                ),
+                SizedBox(height: 12),
+                _signInButton(context),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _signInButton() {
+  Widget _signInButton(context) {
     return RaisedButton(
       splashColor: Colors.grey,
+      color: Colors.white,
+      elevation: 3,
       onPressed: () {
+        Scaffold.of(context).showSnackBar(
+            SnackBar(duration: Duration(minutes: 2),content: Text("Mohon tunggu.. Kami sedang memproses...")));
+        // Scaffold.of(context).showBottomSheet(b);
         authService.signInWithGoogle().whenComplete(() {
           // Navigate to MyApp
           this.parent.setState(() {});

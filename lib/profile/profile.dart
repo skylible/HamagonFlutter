@@ -27,7 +27,10 @@ class ProfileView extends StatelessWidget {
                 height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xff628336),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/profile-background.jpg"),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               Column(

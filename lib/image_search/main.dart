@@ -106,13 +106,13 @@ class _MainImageState extends State<MainImage> {
     // print("Got results" + results[0].toString());
 
     if (results.isEmpty) {
-          print("Context dari page ini adalah:" + context.toString());
+      print("Context dari page ini adalah:" + context.toString());
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
-          setState(() {
-           _imageFile = imageFile; 
-          });
-
+      setState(() {
+        _imageFile = imageFile;
+        _inferenceResult = null;
+      });
     } else {
       final label = results[0]["label"];
       final confidence = (results[0]["confidence"] * 100).toStringAsFixed(2);
@@ -194,9 +194,10 @@ class _MainImageState extends State<MainImage> {
                 // ),
 
                 Container(
-                  width: 300,
+                  width: 216,
                   height: 40,
-                  child: FlatButton(
+                  child: RaisedButton(
+                    elevation: 3,
                       color: Color(0xff628336),
                       onPressed: () => {loadImageAndInfer(context)},
                       textColor: Colors.white,
