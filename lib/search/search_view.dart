@@ -74,11 +74,14 @@ class SearchView extends StatelessWidget {
                               suffixIcon: Container(
                                 padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
                                 child: RaisedButton(
-                                  color: Color(0xff628336),
+                                    color: Color(0xff70a23a),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30)
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    child: Icon(
+                                      Icons.search,
+                                      color: Colors.white,
                                     ),
-                                    child: Icon(Icons.search, color: Colors.white,),
                                     onPressed: () {
                                       _searchName(context: context);
                                     }),
@@ -106,39 +109,39 @@ class SearchView extends StatelessWidget {
                       mainAxisSpacing: 10,
                       crossAxisCount: 2,
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainImage()),
-                            );
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            elevation: 3,
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          elevation: 3,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainImage()),
+                              );
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(8),
-                              child: Image.asset('assets/images/search-01.png'),
+                              child: Image.asset('assets/images/icons/hama-photo.png'),
                             ),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailMain()),
-                            );
-                          },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            elevation: 3,
+                        Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          elevation: 3,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailMain()),
+                              );
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(8),
-                              child: Image.asset('assets/images/search-02.png'),
+                              child: Image.asset('assets/images/icons/hama-search.png'),
                             ),
                           ),
                         ),

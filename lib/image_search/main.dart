@@ -107,8 +107,12 @@ class _MainImageState extends State<MainImage> {
 
     if (results.isEmpty) {
       print("Context dari page ini adalah:" + context.toString());
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
+      // Navigate to list of pests code
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ResultList(results: [])));
+
+      // Scaffold.of(context)
+      //     .showSnackBar(SnackBar(content: Text("Hama tidak ditemukan")));
       setState(() {
         _imageFile = imageFile;
         _inferenceResult = null;
@@ -156,7 +160,7 @@ class _MainImageState extends State<MainImage> {
     return Scaffold(
       appBar: AppBar(
           title: Text("Pencarian Gambar"),
-          backgroundColor: Color(0xff628336),
+          backgroundColor: Color(0xff70a23a),
           centerTitle: true,
           shape: RoundedRectangleBorder(
               borderRadius:
@@ -197,7 +201,7 @@ class _MainImageState extends State<MainImage> {
                   width: 216,
                   height: 40,
                   child: RaisedButton(
-                    elevation: 3,
+                      elevation: 3,
                       color: Color(0xff628336),
                       onPressed: () => {loadImageAndInfer(context)},
                       textColor: Colors.white,

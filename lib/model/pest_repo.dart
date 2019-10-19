@@ -33,13 +33,42 @@ class PestRepo {
   // NOT IDEAL IF DATA IS THOUSANDS, TEMPORARY SOLUTION
   List<Pest> searchDesc(String hostTree, String keyword) {
     List<Pest> results = [];
+    List<String> hostTreeQuery = [];
+    List<String> keywordQuery = [];
+
+    if (hostTree != "") hostTreeQuery = hostTree.split(' ');
+    if (keyword != "") keywordQuery = keyword.split(' ');
 
     for (var pest in pests) {
-      if (pest.hostTree.toLowerCase().contains(hostTree.toLowerCase()) &&
-          pest.description.toLowerCase().contains(keyword.toLowerCase())) {
-        results.add(pest);
+      pest.score = 0;
+      if (hostTreeQuery.isNotEmpty) {
+        for (String term in hostTreeQuery) {
+          if (pest.hostTree.toLowerCase().contains(term.toLowerCase())) {
+            if (!results.contains(pest)) {
+              pest.score += 3;
+              results.add(pest);
+            } else {
+              pest.score += 3;
+            }
+          }
+        }
+      }
+
+      if (keywordQuery.isNotEmpty) {
+        for (String term in keywordQuery) {
+          if (pest.description.toLowerCase().contains(term.toLowerCase())) {
+            if (!results.contains(pest)) {
+              pest.score += 1;
+              results.add(pest);
+            } else {
+              pest.score += 1;
+            }
+          }
+        }
       }
     }
+
+    results.sort((a, b) => a.score.compareTo(b.score));
     return results;
   }
 }
@@ -51,7 +80,9 @@ class Pest {
   final String recommendation;
   final String hostTree;
   double confidence = 0;
+  double score = 0;
 
   Pest(this.imageUrl, this.name, this.description, this.recommendation,
-      this.hostTree, {this.confidence});
+      this.hostTree,
+      {this.confidence});
 }

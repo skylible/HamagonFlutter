@@ -22,15 +22,12 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Topik: " + widget.topic),
-        backgroundColor: Color(0xff628336),
-        centerTitle: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          )
-        )
-      ),
+          title: Text("Topik: " + widget.topic),
+          backgroundColor: Color(0xff628336),
+          centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(30)))),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff628336),
         onPressed: () {
@@ -46,13 +43,13 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
           stream: forumRepo.getThreadListStream(widget.topic),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              return new ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.data.documents.length,
-                padding: const EdgeInsets.only(top: 5.0),
-                itemBuilder: (context, index) {
-                  DocumentSnapshot ds = snapshot.data.documents[index];
-                  if (snapshot.hasData) {
+              if (snapshot.data.documents.length != 0) {
+                return new ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.documents.length,
+                  padding: const EdgeInsets.only(top: 5.0),
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot ds = snapshot.data.documents[index];
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
@@ -69,13 +66,15 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
                                     direction: Axis.horizontal,
                                     children: <Widget>[
                                       Container(
-                                          child: CircleAvatar(
-                                        backgroundImage: ds['avatar_url'] == null
-                                            ? AssetImage(
-                                                'assets/images/avatar-placeholder.png')
-                                            : NetworkImage(ds['avatar_url']),
-                                        radius: 24,
-                                      )),
+                                        child: CircleAvatar(
+                                          backgroundImage: ds['avatar_url'] ==
+                                                  null
+                                              ? AssetImage(
+                                                  'assets/images/avatar-placeholder.png')
+                                              : NetworkImage(ds['avatar_url']),
+                                          radius: 24,
+                                        ),
+                                      ),
                                       Container(
                                         child: Column(
                                           crossAxisAlignment:
@@ -100,7 +99,9 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
                                                     .format(ds['created_at']
                                                         .toDate()),
                                                 textAlign: TextAlign.left,
-                                                style: TextStyle(fontWeight: FontWeight.w300),
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.w300),
                                               ),
                                             )
                                           ],
@@ -160,16 +161,39 @@ class _ForumThreadsViewState extends State<ForumThreadsView> {
                             ),
                           )),
                     );
-                  } else {
-                    return ListView(children: <Widget>[
-                      Text("Tidak ada post yang tersedia"),
-                    ]);
-                  }
-                },
-              );
+                  },
+                );
+              } else {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/icons/hama-confused.png',
+                        height: 152,
+                      ),
+                      Text(
+                        "Wah, belum ada post pada topik ini.",
+                        style: TextStyle(),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateThreadView(topic: widget.topic)));
+                        },
+                        textColor: Colors.white,
+                        child: Text("Buat yuk!"),
+                      ),
+                    ],
+                  ),
+                );
+              }
             } else {
               return Center(
-                child: CircularProgressIndicator(),
+                child: Image.asset('assets/images/gif/loading.gif'),
               );
             }
           },

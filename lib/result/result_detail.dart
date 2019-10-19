@@ -13,16 +13,14 @@ class ResultDetail extends StatelessWidget {
     double _panelHeightOpen = 600.0;
     double _panelHeightClosed = 250.0;
     return Scaffold(
-      backgroundColor: Color(0xff628336),
+      backgroundColor: Color(0xff70a23a),
       appBar: AppBar(
         title: Text("Detail Hama"),
         elevation: 0,
-        backgroundColor: Color(0xff628336),
+        backgroundColor: Color(0xff70a23a),
         centerTitle: true,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          ),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
         ),
       ),
       body: SlidingUpPanel(
@@ -75,79 +73,106 @@ class ResultDetail extends StatelessWidget {
         SizedBox(
           height: 0.0,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // _button("Popular", Icons.favorite, Colors.blue),
-            // _button("Food", Icons.restaurant, Colors.red),
-            // _button("Events", Icons.event, Colors.amber),
-            //_button("More", Icons.more_horiz, Colors.green),
-          ],
-        ),
-        SizedBox(
-          height: 36.0,
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+        SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Deskripsi",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Color(0xff628336))),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  // _button("Popular", Icons.favorite, Colors.blue),
+                  // _button("Food", Icons.restaurant, Colors.red),
+                  // _button("Events", Icons.event, Colors.amber),
+                  //_button("More", Icons.more_horiz, Colors.green),
+                ],
+              ),
               SizedBox(
-                height: 12.0,
+                height: 36.0,
               ),
-              Text(
-                pest.description,
-                maxLines: 10000,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
+              Container(
+                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Deskripsi",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff628336))),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      pest.description,
+                      maxLines: 10000,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 36.0,
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text("Tanaman Inang",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Color(0xff628336))),
               SizedBox(
-                height: 12.0,
+                height: 36.0,
               ),
-              Text(
-                pest.hostTree,
-                maxLines: 10000,
-                overflow: TextOverflow.ellipsis,
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Tanaman Inang",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff628336))),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      pest.hostTree,
+                      maxLines: 10000,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                // child: Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: <Widget>[
+                //     Text("Tanaman Inang",
+                //         style: TextStyle(
+                //             fontWeight: FontWeight.w600,
+                //             color: Color(0xff628336))),
+                //     SizedBox(
+                //       height: 12.0,
+                //     ),
+                //     Text(
+                //       pest.hostTree,
+                //       maxLines: 10000,
+                //       overflow: TextOverflow.ellipsis,
+                //     ),
+                //   ],
+                // ),
               ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 36.0,
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text("Cara Penanganan",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600, color: Color(0xff628336))),
               SizedBox(
-                height: 12.0,
+                height: 36.0,
               ),
-              Text(
-                pest.recommendation,
-                maxLines: 10000,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
+              Container(
+                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Cara Penanganan",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xff628336))),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      pest.recommendation,
+                      maxLines: 10000,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

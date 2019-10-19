@@ -97,10 +97,10 @@ class _CreateThreadViewState extends State<CreateThreadView> {
                             decoration: new InputDecoration(
                               hintText: "Tulis pertanyaan di sini",
                               fillColor: Colors.white,
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(25.0),
-                                borderSide: new BorderSide(),
-                              ),
+                              // border: new OutlineInputBorder(
+                              //   borderRadius: new BorderRadius.circular(25.0),
+                              //   borderSide: new BorderSide(),
+                              // ),
                               //fillColor: Colors.green
                             ),
                             // The validator receives the text that the user has entered.
@@ -116,11 +116,13 @@ class _CreateThreadViewState extends State<CreateThreadView> {
                           ),
                         ),
                         Container(
+                          margin: EdgeInsets.symmetric(vertical: 4),
                           width: double.infinity,
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0)),
                             color: Color(0xff628336),
+                            textColor: Colors.white,
                             onPressed: () {
                               // Validate returns true if the form is valid, otherwise false.
                               if (_formKey.currentState.validate()) {

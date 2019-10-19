@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'news_item.dart';
+import 'package:share/share.dart';
 import 'news_repo.dart';
-import 'news_detail.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class NewsMain extends StatefulWidget {
   @override
@@ -17,15 +17,12 @@ class _NewsMainState extends State<NewsMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Berita Hamagon"),
-        backgroundColor: Color(0xff628336),
-        centerTitle: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          )
-        )
-      ),
+          title: Text("Berita Hamagon"),
+          backgroundColor: Color(0xff70a23a),
+          centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(30)))),
       body: Container(
         child: StreamBuilder(
           stream: newsRepo.getNewsStream(),
@@ -37,12 +34,12 @@ class _NewsMainState extends State<NewsMain> {
                 padding: const EdgeInsets.only(top: 5.0),
                 itemBuilder: (context, index) {
                   DocumentSnapshot ds = snapshot.data.documents[index];
-                  return GestureDetector(
-                    onTap: () => _launchURL(ds['url']),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      elevation: 3,
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    elevation: 3,
+                    child: InkWell(
+                      onTap: () => _launchURL(ds['url']),
                       child: Container(
                         padding: EdgeInsets.fromLTRB(12, 12, 16, 16),
                         height: 132,
@@ -51,12 +48,15 @@ class _NewsMainState extends State<NewsMain> {
                             Flexible(
                               flex: 1,
                               child: Container(
+                                height: 96,
+                                width: 96,
                                 margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                child: Image.network(ds['image_url']),
-                                // child: FadeInImage.assetNetwork(
-                                //     fit: BoxFit.cover,
-                                //     placeholder: 'assets/images/news-icon.png',
-                                //     image: ds['image_url']),
+                                // child: Image.network(ds['image_url']),
+                                child: FadeInImage.memoryNetwork(
+                                    fit: BoxFit.cover,
+                                    // placeholder: 'assets/images/news-icon.png',
+                                    placeholder: kTransparentImage,
+                                    image: ds['image_url']),
                               ),
                             ),
                             Flexible(
@@ -90,7 +90,21 @@ class _NewsMainState extends State<NewsMain> {
                                     flex: 1,
                                     child: Container(
                                       alignment: Alignment.bottomRight,
-                                      child: Icon(Icons.share, color: Color(0xff628336),),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Share.share(
+                                              'Berita baru di Hamagon: ' +
+                                                  ds['title'] +
+                                                  " - " +
+                                                  ds['source'] +
+                                                  " - " +
+                                                  ds['url']);
+                                        },
+                                        child: Icon(
+                                          Icons.share,
+                                          color: Color(0xff628336),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],

@@ -19,12 +19,10 @@ class _DetailMainState extends State<DetailMain> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Pencarian Ciri-Ciri"),
-        backgroundColor: Color(0xff628336),
+        backgroundColor: Color(0xff70a23a),
         centerTitle: true,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30)
-          ),
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
         ),
       ),
       body: Container(
@@ -38,6 +36,8 @@ class _DetailMainState extends State<DetailMain> {
                 child: TextFormField(
                   controller: _inang,
                   decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(0),
@@ -54,6 +54,8 @@ class _DetailMainState extends State<DetailMain> {
                 child: TextFormField(
                   controller: _deskripsi,
                   decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
                         const Radius.circular(0),
@@ -79,12 +81,11 @@ class _DetailMainState extends State<DetailMain> {
                       _search();
                     }
                   },
-                  shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-              
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
                   child: Text(
                     'Cari',
                     style: TextStyle(color: Colors.white),
-                    
                   ),
                 ),
               ),

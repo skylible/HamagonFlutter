@@ -20,6 +20,7 @@ class _ThreadDetailPageState extends State<ThreadDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Komentar'),
         backgroundColor: Color(0xff628336),
@@ -206,7 +207,7 @@ class _ThreadDetailPageState extends State<ThreadDetailPage> {
                                 });
                           } else {
                             return Center(
-                              child: Text("Belum ada komentar..."),
+                              child: Text("Belum ada komentar. Jadilah orang yang pertama berkomentar!"),
                             );
                           }
                         } else {

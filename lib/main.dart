@@ -48,8 +48,8 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       title: 'Hamagon',
       theme: ThemeData(
-        primaryColor: Color(0xff628336),
-        buttonColor: Color(0xff628336),
+        primaryColor: Color(0xff70a23a),
+        buttonColor: Color(0xff70a23a),
       ),
       home: FutureBuilder<FirebaseUser>(
         future: authService.getCurrentUser(),
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
                   bottomNavigationBar: CurvedNavigationBar(
                     index: 0,
                     height: 50.0,
-                    color: Color(0xff628336),
+                    color: Color(0xff70a23a),
                     backgroundColor: Colors.transparent,
                     items: <Widget>[
                       Icon(Icons.search, size: 30, color: Colors.white),
@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
       body: Builder(
         builder: (BuildContext context) => Container(
           padding: EdgeInsets.all(24),
-          color: Color(0xff628336),
+          color: Color(0xff70a23a),
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -114,8 +114,12 @@ class LoginPage extends StatelessWidget {
                 Image.asset(
                   'assets/images/hama-01.png',
                 ),
-                SizedBox(height: 12),
-                _signInButton(context),
+                // SizedBox(height: 12),
+                // Flex(direction: Axis.vertical,mainAxisSize: MainAxisSize.max,children: <Widget>[SizedBox()],),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: _signInButton(context),
+                ),
               ],
             ),
           ),
@@ -130,8 +134,9 @@ class LoginPage extends StatelessWidget {
       color: Colors.white,
       elevation: 3,
       onPressed: () {
-        Scaffold.of(context).showSnackBar(
-            SnackBar(duration: Duration(minutes: 2),content: Text("Mohon tunggu.. Kami sedang memproses...")));
+        Scaffold.of(context).showSnackBar(SnackBar(
+            duration: Duration(minutes: 2),
+            content: Text("Mohon tunggu.. Kami sedang memproses...")));
         // Scaffold.of(context).showBottomSheet(b);
         authService.signInWithGoogle().whenComplete(() {
           // Navigate to MyApp
@@ -156,7 +161,7 @@ class LoginPage extends StatelessWidget {
                 'Masuk dengan Google',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xff628336),
+                  color: Color(0xff70a23a),
                 ),
               ),
             )
