@@ -1,5 +1,4 @@
 # hamagon
 
-Hamagon is a pest identifier app
+Hamagon is a pest image identifier app
 
-## Getting Started
